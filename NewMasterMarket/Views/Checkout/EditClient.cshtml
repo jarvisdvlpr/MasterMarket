@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewData["Title"] = "EditClient";
+}
+
+@model AddClientViewModel
+<section class="product-section pt-0">
+    <div class="container-fluid p-0">
+        <div class="custom-row">
+            <div class="sidebar-col">
+                <div class="category-menu">
+                    <a asp-controller="Home" asp-action="index" class="nav-logo">
+                        <img src="~/assets/images/logo/1.svg" class="img-fluid blur-up lazyload" alt="">
+                    </a>
+                    @*<br />
+                    <br />*@
+                    <ul>
+                        @foreach (var item in @Model.CategoryList)
+                        {
+                            <li>
+                                <div class="category-list">
+                                    <img src="~/uploads/category/@item.IconSrc" class="blur-up lazyload" alt="">
+                                    <h5>
+                                        <a asp-controller="category" asp-action="index" asp-route-id="@item.Id">@item.Name</a>
+                                    </h5>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <!--Category End-->
+
+
+            <div class="content-col">
+                <div class="title d-block">
+                    <h2 class="text-theme font-sm">Измените/Дополните свои данные</h2>
+                    <p>
+                        Все пункты кроме электронного почтого ящика обязательны, но желательно написать ваш электронный почтовый ящик
+                        для отправки списка купленных товаров, и всего прочего
+                    </p>
+                </div>
+                <div class="location-list">
+                        <form class="theme-form theme-form-2 mega-form" asp-action="EditClient" asp-controller="checkout" method="post">
+                            <div class="mb-4 row align-items-center">
+                                <label class="form-label-title col-sm-3 mb-0" asp-for="MyClient.Fullname">ФИО*</label>
+                                <div class="col-sm-9">
+                                    <input  class="form-control" asp-for="MyClient.Fullname" />
+                                    <span class="text text-danger" asp-validation-for="MyClient.Fullname"></span>
+                                </div>
+                            </div>
+                            <div class="mb-4 row align-items-center">
+                                <label class="form-label-title col-sm-3 mb-0" asp-for="MyClient.Number">Контактный номер*</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" asp-for="MyClient.Number" />
+                                    <span class="text text-danger" asp-validation-for="MyClient.Number"></span>
+                                </div>
+                            </div>
+                            <div class="mb-4 row align-items-center">
+                                <label class="form-label-title col-sm-3 mb-0" asp-for="MyClient.Address">Адрес*</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" asp-for="MyClient.Address" />
+                                    <span class="text text-danger" asp-validation-for="MyClient.Address"></span>
+                                </div>
+                            </div>
+                            <div class="mb-4 row align-items-center">
+                                <label class="form-label-title col-sm-3 mb-0" asp-for="MyClient.Email">Электронный адрес</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" asp-for="MyClient.Email" />
+                                    <span class="text text-danger" asp-validation-for="MyClient.Email"></span>
+                                </div>
+                            </div>
+                            <div class="mybrobtn" style="display: flex; justify-content: space-around; margin-top: 20px;">
+                                <button type="submit" class="btn btn-sm cart-button theme-bg-color text-white w-25">Подтвердить</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+

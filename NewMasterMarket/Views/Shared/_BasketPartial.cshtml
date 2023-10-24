@@ -1,0 +1,131 @@
+﻿@model BasketViewModel
+
+<div class="onhover-dropdown header-badge">
+    <button type="button" class="btn p-0 position-relative header-wishlist">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+
+        <span class="position-absolute top-0 start-100 translate-middle badge">
+            @Model.BasketItems.Count
+            <span class="visually-hidden">Непрочитанные сообщения</span>
+        </span>
+    </button>
+
+    <div class="onhover-div">
+        <div class="mydivka" style="
+    max-height: 400px;
+    overflow: auto;
+">
+            <ul class="cart-list">
+                @foreach (var item in @Model.BasketItems)
+                {
+                    <li class="product-box-contain">
+                        <div class="drop-cart">
+                            <a asp-action="index" asp-controller="product" asp-route-id="@item.Item.Id" class="drop-image">
+                                <img src="~/uploads/items/@item.Item.Imgsrc"
+                                 class="blur-up lazyload" alt="">
+                            </a>
+
+                            <div class="drop-contain">
+                                <a asp-action="index" asp-controller="product" asp-route-id="@item.Item.Id">
+                                    <h5>@item.Item.Name</h5>
+                                </a>
+                                <h6><span>@item.ItemCount x</span> ₽@item.Item.Price.ToString("0.00")</h6>
+                                <button href="@Url.Action("DeleteBasketItem", "home", new {id = @item.Item.Id})" class="close-button close_button">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+            </ul>
+        </div>
+
+        <div class="price-box">
+            <h5>Всего :</h5>
+            <h4 class="theme-color fw-bold">₽@Model.TotalPrice.ToString("0.00")</h4>
+        </div>
+
+        <div class="button-group">
+            <a asp-action="cart" asp-controller="checkout" class="btn btn-sm cart-button">Корзина</a>
+            <a asp-action="index" asp-controller="checkout" class="btn btn-sm cart-button theme-bg-color text-white">Подтвердить</a>
+        </div>
+    </div>
+</div>
+
+@*<div class="onhover-dropdown header-badge">
+    <button type="button" class="btn p-0 position-relative header-wishlist">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="position-absolute top-0 start-100 translate-middle badge">
+            3
+            <span class="visually-hidden">unread messages</span>
+        </span>
+    </button>
+
+    <div class="onhover-div">
+        <ul class="cart-list">
+            <li class="product-box-contain">
+                <div class="drop-cart">
+                    <a href="product-left-thumbnail.html" class="drop-image">
+                        <img src="/uploads/items/34ff36a4-f91f-4a32-85ac-095d6ac286c7jiqulevskoe.jpeg" class="blur-up lazyloaded" alt="" style="max-width: 50px;">
+                    </a>
+
+                    <div class="drop-contain">
+                        <a href="product-left-thumbnail.html">
+                            <h5>Пиво  Миллер  0.5л/24 ж/б, ящ.</h5>
+                        </a>
+                        <h6><span>1 x</span> ₽68.70</h6>
+                        <button class="close-button close_button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li class="product-box-contain">
+                <div class="drop-cart">
+                    <a href="product-left-thumbnail.html" class="drop-image">
+                        <img src="/uploads/items/f8a3c96b-ab8c-41a1-bd29-7036da635203jiqulevskoe.jpeg" class="blur-up lazyloaded" alt="" style="max-width: 50px;">
+                    </a>
+
+                    <div class="drop-contain">
+                        <a href="product-left-thumbnail.html">
+                            <h5>Пиво  Золотая Кружка  ст/б  0,5л /20шт, ящ.</h5>
+                        </a>
+                        <h6><span>1 x</span> ₽49.60</h6>
+                        <button class="close-button close_button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li class="product-box-contain">
+                <div class="drop-cart">
+                    <a href="product-left-thumbnail.html" class="drop-image">
+                        <img src="/uploads/items/bb6ac02e-84d7-4a64-9f33-5722b0ffd72fjiqulevskoe.jpeg" class="blur-up lazyloaded" alt="" style="max-width: 50px;">
+                    </a>
+
+                    <div class="drop-contain">
+                        <a href="product-left-thumbnail.html">
+                            <h5>Пиво  Жигулевское  1,5л/6   ОША , ящ.</h5>
+                        </a>
+                        <h6><span>1 x</span> ₽83.20</h6>
+                        <button class="close-button close_button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="price-box">
+            <h5>Total :</h5>
+            <h4 class="theme-color fw-bold">₽201.50</h4>
+        </div>
+
+        <div class="button-group">
+            <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
+            <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
+                                                    text-white">Checkout</a>
+        </div>
+    </div>
+</div>*@

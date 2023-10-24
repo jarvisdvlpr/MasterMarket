@@ -1,0 +1,157 @@
+﻿@{
+    Layout = null;
+}
+@model EmailAddViewModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fastkart">
+    <meta name="keywords" content="Fastkart">
+    <meta name="author" content="Fastkart">
+    <link rel="icon" href="~/front/assets/images/favicon/1.png" type="image/x-icon">
+    <title>Coming Soon</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="~/front/assets/css/vendors/bootstrap.css">
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="~/front/assets/css/vendors/font-awesome.css">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="~/front/assets/css/vendors/feather-icon.css">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="~/front/assets/css/vendors/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/front/assets/css/vendors/slick/slick-theme.css">
+
+    <!-- Iconly css -->
+    <link rel="stylesheet" type="text/css" href="~/front/assets/css/bulk-style.css">
+
+    <!-- Template css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="~/front/assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Loader Start -->
+    <div class="fullpage-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Loader End -->
+    <!-- Coming Soon Section Start -->
+    <section class="coming-soon-section pt-0">
+        <div class="bg-black"></div>
+        <div class="container-fluid-lg w-100">
+            <div class="row">
+                <div class="col-lg-5"></div>
+
+                <div class="col-xxl-5 col-xl-6 col-lg-7">
+                    <div class="coming-box">
+                        <div>
+                            <div class="coming-title">
+                                <h2>Мы Скоро Открываемся...</h2>
+                            </div>
+                            <p class="coming-text">
+                                Мы сейчас работаем над нашим новым потрясяющим сайтом. Оставайтесь на
+                                связи для большей информации. Напишите нам свой эмейл,чтобы получить
+                                новейшую информацию в автоматическом порядке.
+                            </p>
+
+                            <div class="coming-timer" id="clockdiv-1" data-hours="1" data-minutes="2" data-seconds="3">
+                                <ul class="d-flex justify-content-center">
+                                    <li>
+                                        <div class="counter">
+                                            <div class="days">
+                                                <h6></h6>
+                                            </div>
+                                            <p>День</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="counter">
+                                            <div class="hours">
+                                                <h6></h6>
+                                            </div>
+                                            <p>Час</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="counter">
+                                            <div class="minutes">
+                                                <h6></h6>
+                                            </div>
+                                            <p>Минута</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="counter">
+                                            <div class="seconds">
+                                                <h6></h6>
+                                            </div>
+                                            <p>Секунда</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="coming-contain">
+                                @if (ViewBag.sub == "true")
+                                {
+                                    <div class="coming-form input-group">
+                                        <h3>Спасибо за подписку! В скором времени мы свяжемся с вами!</h3>
+                                    </div>
+                                }
+                                @if(ViewBag.sub != "true"){
+                                <form asp-action="EmailAdd" asp-controller="home" method="post">
+                                    <div class="coming-form input-group">
+                                        <input asp-for="Email" class="form-control" id="exampleFormControlInput1"
+                                               placeholder="Напиши свой эмайл">
+                                               <span class="text-danger" asp-validation-for="Email"></span>
+                                        <button type="submit" class="coming-button">Подписаться</button>
+                                    </div>
+                                </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Coming Soon Section End -->
+    <!-- latest jquery-->
+    <script src="~/front/assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- jquery ui-->
+    <script src="~/front/assets/js/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="~/front/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="~/front/assets/js/bootstrap/popper.min.js"></script>
+    <script src="~/front/assets/js/bootstrap/bootstrap-notify.min.js"></script>
+
+    <!-- Lazyload Js -->
+    <script src="~/front/assets/js/lazysizes.min.js"></script>
+
+    <!-- Timer js-->
+    <script src="~/front/assets/js/timer1.js"></script>
+
+    <!-- script js -->
+    <script src="~/front/assets/js/script.js"></script>
+</body>
+
+</html>

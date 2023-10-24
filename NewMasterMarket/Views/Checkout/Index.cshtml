@@ -1,0 +1,204 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    double totalPrice = 0;
+}
+@model CheckoutFrontViewModel
+
+<section class="product-section pt-0">
+    <div class="container-fluid p-0">
+        <div class="custom-row">
+            <div class="sidebar-col">
+                <div class="category-menu">
+                    <a asp-controller="Home" asp-action="index" class="nav-logo">
+                        <img src="~/assets/images/logo/1.svg" class="img-fluid blur-up lazyload" alt="">
+                    </a>
+                    @*<br />
+                    <br />*@
+                    <ul>
+                        @foreach (var item in @Model.CategoryList)
+                        {
+                            <li>
+                                <div class="category-list">
+                                    <img src="~/uploads/category/@item.IconSrc" class="blur-up lazyload" alt="">
+                                    <h5>
+                                        <a asp-controller="category" asp-action="index" asp-route-id="@item.Id">@item.Name</a>
+                                    </h5>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <!--Category End-->
+
+            <div class="content-col">
+                <section class="checkout-section-2 section-b-space">
+                    <div class="container-fluid-lg">
+                        <div class="row g-sm-4 g-3">
+                            <div class="col-lg-6">
+                                <div class="right-side-summery-box">
+                                    <div class="summery-box-2">
+                                        <div class="summery-header">
+                                            <h3>Ваш заказ</h3>
+                                        </div>
+                                        <ul class="summery-contain">
+                                            @foreach (var item in Model.Items)
+                                            {
+                                                <li>
+                                                    <img src="~/uploads/items/@item.ItemModel.Imgsrc"
+                                                     class="img-fluid blur-up lazyloaded checkout-image" alt="@item.ItemModel.Name">
+                                                    <h4>@item.ItemModel.Name <span><strong>X @item.Count</strong></span></h4>
+                                                    <h4 class="price">₽@item.ItemModel.Price.ToString("0.00")</h4>
+                                                </li>
+                                            <!--   @(totalPrice = totalPrice + (item.ItemModel.Price * item.Count))     -->    
+                                                    
+                                            }
+                                                                            
+
+
+                                            @*<li>
+                                            <img src="../assets/images/vegetable/product/2.png"
+                                            class="img-fluid blur-up lazyloaded checkout-image" alt="">
+                                            <h4>Eggplant <span>X 3</span></h4>
+                                            <h4 class="price">$12.23</h4>
+                                            </li>
+
+                                            <li>
+                                            <img src="../assets/images/vegetable/product/3.png"
+                                            class="img-fluid blur-up lazyloaded checkout-image" alt="">
+                                            <h4>Onion <span>X 2</span></h4>
+                                            <h4 class="price">$18.27</h4>
+                                            </li>
+
+                                            <li>
+                                            <img src="../assets/images/vegetable/product/4.png"
+                                            class="img-fluid blur-up lazyloaded checkout-image" alt="">
+                                            <h4>Potato <span>X 1</span></h4>
+                                            <h4 class="price">$26.90</h4>
+                                            </li>
+
+                                            <li>
+                                            <img src="../assets/images/vegetable/product/5.png"
+                                            class="img-fluid blur-up lazyloaded checkout-image" alt="">
+                                            <h4>Baby Chili <span>X 1</span></h4>
+                                            <h4 class="price">$19.28</h4>
+                                            </li>
+
+                                            <li>
+                                            <img src="../assets/images/vegetable/product/6.png"
+                                            class="img-fluid blur-up lazyloaded checkout-image" alt="">
+                                            <h4>Broccoli <span>X 2</span></h4>
+                                            <h4 class="price">$29.69</h4>
+                                            </li>*@
+                                        </ul>
+
+                                        <ul class="summery-total">
+                                            @*<li>
+                                            <h4>Subtotal</h4>
+                                            <h4 class="price">$111.81</h4>
+                                            </li>
+
+                                            <li>
+                                            <h4>Shipping</h4>
+                                            <h4 class="price">$8.90</h4>
+                                            </li>
+
+                                            <li>
+                                            <h4>Tax</h4>
+                                            <h4 class="price">$29.498</h4>
+                                            </li>
+
+                                            <li>
+                                            <h4>Coupon/Code</h4>
+                                            <h4 class="price">$-23.10</h4>
+                                            </li>
+                                            *@
+                                            <li class="list-total">
+                                                <h4>Всего (Рубль)</h4>
+                                                <h4 class="price">₽@totalPrice.ToString("0.00")</h4>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <a asp-action="ordered" asp-controller="checkout" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Заказать</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="left-sidebar-checkout">
+                                    <div class="checkout-detail-box">
+                                        <ul>
+                                            <li>
+                                                <div class="checkout-box">
+                                                    <div class="checkout-title">
+                                                        <h4>Адрес доставки</h4>
+                                                    </div>
+
+                                                    <div class="checkout-detail">
+                                                        <div class="row g-4">
+                                                            <div class="col-12">
+                                                                <div class="delivery-address-box">
+                                                                    <div>
+                                                                        @*<div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="jack"
+                                                                        id="flexRadioDefault1">
+                                                                        </div>*@
+
+                                                                        <div class="label">
+                                                                            @*<label><a href="#" style="color:white">Написать</a> </label>*@
+                                                                            <button class="btn btn-sm cart-button theme-bg-color text-white" onclick="@("window.location.href='" + @Url.Action("editclient", "checkout") + "'");" style="width:75px; height:22px;">Изменить</button>
+                                                                        </div>
+
+                                                                        <ul class="delivery-address-detail">
+                                                                            <li>
+                                                                                <h4 class="fw-500">@Model.CurrentClient.Fullname</h4>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <p class="text-content">
+                                                                                    <span class="text-title">
+                                                                                        Адрес
+                                                                                        :
+                                                                                    </span>@Model.CurrentClient.Address
+                                                                                </p>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <h6 class="text-content mb-0">
+                                                                                    <span class="text-title">
+                                                                                        Номер
+                                                                                        :
+                                                                                    </span> @Model.CurrentClient.Number
+                                                                                </h6>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <h6 class="text-content">
+                                                                                    <span class="text-title">
+                                                                                        Почта:
+                                                                                    </span> @Model.CurrentClient.Email
+                                                                                </h6>
+                                                                            </li>
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </section>
+                <!-- Checkout section End -->
+            </div>
+        </div>
+    </div>
+</section>

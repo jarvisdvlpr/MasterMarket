@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "ConvertExcel";
+}
+
+@section Css{
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/datatables.css">
+
+}
+    @model List<DExcelViewModel>
+<div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="title-header option-title">
+                        <h5>Все Продукты</h5>
+                        <form class="d-inline-flex">
+                            <a asp-action="create" asp-controller="product"
+                           class="align-items-center btn btn-theme d-flex">
+                                <i data-feather="plus-square"></i>Добавить новый
+                            </a>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive category-table">
+                        <div>
+                            <table class="table all-package theme-table" id="table_id">
+                                <thead>
+                                    <tr>
+                                        <th>OrderName</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in @Model)
+                                {
+                                    <tr>
+                                        
+
+                                        <td>@item.OrderName</td>
+
+                                        <td>@item.Name</td>
+
+                                        <td class="td-price">₽@item.Price.ToString("0.00")</td>
+
+                                        
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Data table js -->
+    <script src="~/manage/assets/js/jquery.dataTables.js"></script>
+    <script src="~/manage/assets/js/custom-data-table.js"></script>
+}
+

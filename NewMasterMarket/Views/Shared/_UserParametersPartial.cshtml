@@ -1,0 +1,54 @@
+﻿@model Client
+<div class="modal location-modal fade theme-modal" id="locationModal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ваши Данные</h5>
+                @*<p class="mt-1 text-content">Enter your address and we will specify the offer for your area.</p>*@
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="location-list">
+                    @*<div class="search-input">
+                    <input type="search" class="form-control" placeholder="Search Your Area">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>*@
+
+                    <table class="table table-user-information">
+                        <tbody>
+                            <tr>
+                                <td>ФИО</td>
+                                <td>@Model.Fullname</td>
+                            </tr>
+                            <tr>
+                                <td>Адрес</td>
+                                <td>@Model.Address</td>
+                            </tr>
+                            <tr>
+                                <td>Контактный номер</td>
+                                <td>@Model.Number</td>
+                            </tr>
+                            @if(!String.IsNullOrWhiteSpace(Model.Email))
+                            {
+                                <tr>
+                                <td>Почта</td>
+                                <td>@Model.Email</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @if (string.IsNullOrWhiteSpace(Model.Email))
+                    {
+                        <p>Пожалуйста напишите свою почту чтобы быть в курсе всех новостей и для получения списка покупок и тд.</p>
+                    }
+                    <div class="mybrobtn" style="display: flex; justify-content: space-around; margin-top: 20px;">
+                        <a asp-action="editclient" asp-controller="checkout" class="btn btn-sm cart-button theme-bg-color text-white w-25">Изменить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

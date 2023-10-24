@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Продукты";
+}
+
+@section Css{
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/datatables.css">
+}
+    @model ProductViewModel
+<div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="title-header option-title">
+                        <h5>Все Продукты</h5>
+                        <form class="d-inline-flex">
+                            <a asp-action="create" asp-controller="product"
+                           class="align-items-center btn btn-theme d-flex">
+                                <i data-feather="plus-square"></i>Добавить новый
+                            </a>
+                            <a class="align-items-center btn btn-theme d-flex">Иморт</a>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive category-table">
+                        <div>
+                            <table class="table all-package theme-table" id="table_id">
+                                <thead>
+                                    <tr>
+                                        <th>Фотография</th>
+                                        <th>Называние</th>
+                                        <th>Категория</th>
+                                        <th>Цена</th>
+                                        <th>Опции</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in @Model.ItemList)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="table-image">
+                                                <img src="~/uploads/items/@item.Imgsrc" class="img-fluid"
+                                                 alt="">
+                                            </div>
+                                        </td>
+
+                                        <td>@item.Name</td>
+
+                                        <td>@item.Category.Name</td>
+
+                                        <td class="td-price">₽@item.Price</td>
+
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a id="mymodalwindow" asp-action="getItem" asp-controller="product" asp-route-id="@item.Id" data-bs-toggle="modal" data-bs-target="#view">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-action="edit" asp-controller="product" asp-route-id="@item.Id">
+                                                        <i class="ri-pencil-line"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-action="delete" asp-controller="product" asp-route-id="@item.Id" id="deletexuynu">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Data table js -->
+    <script src="~/manage/assets/js/jquery.dataTables.js"></script>
+    <script src="~/manage/assets/js/custom-data-table.js"></script>
+
+    
+}
+

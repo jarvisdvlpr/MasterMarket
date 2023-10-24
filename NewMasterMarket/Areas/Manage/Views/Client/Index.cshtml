@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@section Css{
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/datatables.css">
+
+}
+    @model BackClientViewModel
+<div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="title-header option-title">
+                        <h5>Все Клиенты</h5>
+                        @*<form class="d-inline-flex">
+                            <a asp-action="create" asp-controller="category"
+                           class="align-items-center btn btn-theme d-flex">
+                                <i data-feather="plus-square"></i>Добавить новый
+                            </a>
+                        </form>*@
+                    </div>
+
+                    <div class="table-responsive category-table">
+                        <div>
+                            <table class="table all-package theme-table" id="table_id">
+                                <thead>
+                                    <tr>
+                                        <th>ФИО</th>
+                                        <th>Телефон</th>
+                                        <th>Адресс</th>
+                                        <th>Эмаил</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in @Model.Clients)
+                                {
+                                    <tr>
+                                        <td>@item.Fullname</td>
+
+                                        <td>@item.Number</td>
+                                        <td>@item.Address</td>
+
+                                        <td>@(item.Email== null?"Отсуствует": item.Email)</td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a asp-action="edit" asp-controller="client" asp-route-id="@item.Id">
+                                                        <i class="ri-pencil-line"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-action="delete" asp-controller="client" asp-route-id="@item.Id" id="deletexuynu">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Data table js -->
+    <script src="~/manage/assets/js/jquery.dataTables.js"></script>
+    <script src="~/manage/assets/js/custom-data-table.js"></script>
+}
+

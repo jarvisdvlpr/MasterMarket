@@ -1,0 +1,169 @@
+﻿@model FrontProductViewModel
+@{
+    ViewData["Title"] = Model.myItem.Name.ToString();
+}
+
+<input type="hidden" id="my-data" value="@ViewBag.BasketCount" />
+
+
+
+<section class="product-section pt-0">
+    <div class="container-fluid p-0">
+        <div class="custom-row">
+            <div class="sidebar-col">
+                <div class="category-menu">
+                    <a asp-controller="Home" asp-action="index" class="nav-logo">
+                        <img src="~/assets/images/logo/1.svg" class="img-fluid blur-up lazyload" alt="">
+                    </a>
+                    @*<br />
+                    <br />*@
+                    <ul>
+                        @foreach (var item in @Model.CategoryList)
+                        {
+                            <li>
+                                <div class="category-list">
+                                    <img src="~/uploads/category/@item.IconSrc" class="blur-up lazyload" alt="">
+                                    <h5>
+                                        <a asp-controller="category" asp-action="index" asp-route-id="@item.Id">@item.Name</a>
+                                    </h5>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <!--Category End-->
+
+            <div class="content-col">
+                <!--content-->
+
+                <section class="product-section">
+                    <div class="container-fluid-lg">
+                        <div class="row" style="display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: space-between;align-items: flex-start;">
+                            <div class="col-xxl-9 col-xl-8 col-lg-7 wow fadeInUp">
+                                <div class="row g-4" style="background-color: #f8f8f8;">
+                                    
+                                    <div class="col-xl-6 wow fadeInUp">
+                                        <div class="product-left-box">
+                                            <div class="row g-2">
+                                                <div class="col-xxl-10 col-lg-12 col-md-10 order-xxl-2 order-lg-1 order-md-2">
+                                                    <div class="product-main-2 no-arrow">
+                                                        <div>
+                                                            <div class="slider-image">
+                                                                <img src="~/uploads/items/@Model.myItem.Imgsrc" id="img-1"
+                                                                     data-zoom-image="~/assets/images/product/category/jiqulevskoe.jpeg"
+                                                                     class="img-fluid image_zoom_cls-0 blur-up lazyload" alt="@Model.myItem.Name"
+                                                                     style="display: block;margin-left: auto;margin-right: auto;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--vtoroy-->
+                                    <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
+                                        <div class="right-box-contain">
+
+                                            <h2 class="name">@Model.myItem.Name</h2>
+                                            <div class="price-rating">
+                                                <h3 class="theme-color price">₽@Model.myItem.Price</h3>
+                                            </div>
+
+                                            <div class="procuct-contain">
+                                                <p>
+                                                    @Model.myItem.Description
+                                                </p>
+                                            </div>
+                                            @*tut dodelat nado*@
+                                            <form asp-action="AddBasket" asp-controller="Product" method="post">
+                                                <div class="note-box product-packege">
+
+                                                    <div class="cart_qty qty-box product-qty">
+                                                        <div class="input-group">
+                                                            <button type="button" class="qty-left-minus" data-type="minus"
+                                                                    data-field="">
+                                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                                            </button>
+
+                                                            <input class="form-control input-number qty-input" type="text"
+                                                                   name="quantity" value="@Model.ItemBasketCount" readonly>
+                                                            <input type="hidden" id="my-amount" value="@ViewBag.AddAmount" />
+                                                            <input type="hidden" id="id" value="@ViewBag.Id" />
+                                                            <button type="button" class="qty-right-plus" data-type="plus" data-field="">
+                                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <button type="submit"
+                                                            class="btn theme-bg-color text-white wishlist-btn addtomycart-btn w-100">
+                                                        Добавить в корзину
+                                                    </button>
+                                                    @*href="@Url.Action("addbasket", "home", new {id = @Model.myItem.Id})"*@
+                                                </div>
+                                            </form>
+
+                                            <div class="buy-box">
+                                                <a href="wishlist.html">
+                                                    <i data-feather="heart"></i>
+                                                    <span>Add To Wishlist</span>
+                                                </a>
+
+                                                @*<a href="compare.html">
+                                                    <i data-feather="shuffle"></i>
+                                                    <span>Add To Compare</span>
+                                                </a>*@
+                                            </div>
+
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                 
+                            </div>
+                           
+                            <!--TutCompany-->
+                            <div class="right-sidebar-box" style="display: contents;">
+                                <div class="vendor-box">
+                                    <div class="verndor-contain">
+                                        <div class="vendor-image">
+                                            <img src="~/uploads/company/@Model.myItem.Company.ImgSrc" class="blur-up lazyload" alt="">
+                                        </div>
+
+                                        <div class="vendor-name">
+                                            <h5 class="fw-500">@Model.myItem.Company.Name</h5>
+
+                                        </div>
+                                    </div>
+
+                                    <p class="vendor-detail">@Model.myItem.Company.Description</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--NijeDivi ne troqay-->
+            </div>
+        </div>
+    </div>
+</section>
+

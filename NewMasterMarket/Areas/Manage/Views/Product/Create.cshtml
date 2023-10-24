@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Добавить новый";
+}
+
+@section Css{
+    <!--Dropzon css -->
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/vendors/dropzone.css">
+    <!-- Select2 css -->
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/select2.min.css">
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/vendors/chartist.css">
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/vendors/date-picker.css">
+    <!-- Bootstrap-tag input css -->
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/vendors/bootstrap-tagsinput.css">
+}
+    @model ProductFormViewModel
+
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-sm-8 m-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-header-2">
+                                <h5>Информация о продукте</h5>
+                            </div>
+
+                            <form class="theme-form theme-form-2 mega-form" asp-action="create" method="post" enctype="multipart/form-data">
+                                <div class="mb-4 row align-items-center">
+                                    <label class="form-label-title col-sm-3 mb-0" asp-for="Name">Называние</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" placeholder="Называние" asp-for="Name">
+                                    </div>
+                                    <span class="text-danger" asp-validation-for="Name"></span>
+                                </div>
+
+
+
+                                <div class="mb-4 row align-items-center">
+                                    <label class="col-sm-3 col-form-label form-label-title" asp-for="CategoryId">Категория</label>
+                                    <div class="col-sm-9">
+                                        <select class="js-example-basic-single w-100" asp-for="CategoryId" asp-items="ViewBag.Categories">
+                                            <option disabled>Категория</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 row align-items-center">
+                                    <label class="col-sm-3 col-form-label form-label-title" asp-for="CompanyId">Производитель</label>
+                                    <div class="col-sm-9">
+                                        <select class="js-example-basic-single w-100" asp-for="CompanyId" asp-items="ViewBag.Companies">
+                                            <option disabled>Производитель</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 row align-items-center">
+                                    <label class="col-sm-3 form-label-title" asp-for="Price">Цена</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="number" placeholder="0" asp-for="Price">
+                                    </div>
+                                    <span class="text-danger" asp-validation-for="Price"></span>
+                                </div>
+
+                                <div class="mb-4 row align-items-center">
+                                    <label class="col-sm-3 col-form-label form-label-title" asp-for="ImageFile">Изображение</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control form-choose" asp-for="ImageFile" type="file"
+                                           id="formFile" multiple>
+                                    </div>
+                                    <span class="text-danger" asp-validation-for="ImageFile"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <label class="form-label-title col-sm-3 mb-0" asp-for="Description">Описание</label>
+                                            <textarea class="form-control" asp-for="Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mybrobtn" style="display: flex; justify-content: space-around; margin-top: 20px;">
+                                    <button type="submit" class="btn btn-solid w-25">Подтвердить</button>
+                                </div>
+
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @section Scripts{
+    <!--I added for the ProductsAdding Description form-->
+    <!-- select2 js -->
+    <script src="~/manage/assets/js/select2.min.js"></script>
+    <script src="~/manage/assets/js/select2-custom.js"></script>
+
+    @*<!-- ck editor js -->
+    <script src="~/manage/assets/js/ckeditor.js"></script>
+    <script src="~/manage/assets/js/ckeditor-custom.js"></script>*@
+
+    <!--Dropzon js -->
+    <script src="~/manage/assets/js/dropzone/dropzone.js"></script>
+    <script src="~/manage/assets/js/dropzone/dropzone-script.js"></script>
+
+    <!-- bootstrap tag-input js -->
+    <script src="~/manage/assets/js/bootstrap-tagsinput.min.js"></script>
+    <script src="~/manage/assets/js/sidebar-menu.js"></script>
+
+    }
+    @section FormScripts{
+    <!--Jquery validation min js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    }
+

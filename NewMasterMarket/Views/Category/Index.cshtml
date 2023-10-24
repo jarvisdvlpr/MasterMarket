@@ -1,0 +1,183 @@
+﻿@model JustCategoryViewModel
+@{
+    ViewData["Title"] = Model.CategoryItem.Name.ToString();
+}
+
+<!-- CategoryStart -->
+<section class="product-section pt-0">
+    <div class="container-fluid p-0">
+        <div class="custom-row">
+            <div class="sidebar-col">
+                <div class="category-menu">
+                    <a asp-controller="Home" asp-action="index" class="nav-logo">
+                        <img src="~/assets/images/logo/1.svg" class="img-fluid blur-up lazyload" alt="">
+                    </a>
+                    @*<br />
+                    <br />*@
+                    <ul>
+                        @foreach (var item in @Model.CategoryList)
+                        {
+                            <li>
+                                <div class="category-list">
+                                    <img src="~/uploads/category/@item.IconSrc" class="blur-up lazyload" alt="">
+                                    <h5>
+                                        <a asp-controller="category" asp-action="index" asp-route-id="@item.Id">@item.Name</a>
+                                    </h5>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <!--Category End-->
+
+            <div class="content-col">
+                 <div class="title d-block">
+                        <h2 class="text-theme font-sm">@Model.CategoryItem.Name</h2>
+                        <p>A virtual assistant collects the products from your list</p>
+                    </div>
+                <div class="row row-cols-xxl-6 row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2 g-sm-4 g-3 section-b-space">
+
+                    @foreach (var item in Model.ItemList)
+                    {
+                        <div>
+                            <div class="product-box product-white-bg wow fadeIn">
+                                <div class="product-image">
+                                    <a asp-action="Index" asp-controller="Product" asp-route-id="@item.Id">
+                                        <img src="~/uploads/items/@item.Imgsrc"
+                                         class="img-fluid blur-up lazyload" alt="">
+                                    </a>
+                                    <ul class="product-option">
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
+                                                <i data-feather="eye"></i>
+                                            </a>
+                                        </li>
+
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
+                                            <a href="compare.html">
+                                                <i data-feather="refresh-cw"></i>
+                                            </a>
+                                        </li>
+
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                            <a href="wishlist.html" class="notifi-wishlist">
+                                                <i data-feather="heart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="product-detail position-relative">
+                                    <a asp-action="Index" asp-controller="Product" asp-route-id="@item.Id">
+                                        <h6 class="name">
+                                            @item.Name
+                                        </h6>
+                                    </a>
+
+                                    <h6 class="sold weight text-content fw-normal">От @item.MinAmount шт</h6>
+
+                                    <h6 class="price theme-color">₽ @item.Price</h6>
+
+                                    <div class="add-to-cart-btn-2 addtocart_btn">
+                                        <button class="btn addcart-button btn buy-button">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                        <div class="cart_qty qty-box-2 qty-box-3">
+                                            <div class="input-group">
+                                                <button type="button" class="qty-left-minus" data-type="minus"
+                                                    data-field="">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+                                                <input class="form-control input-number qty-input" type="text"
+                                                   name="quantity" value="0">
+                                                <button type="button" class="qty-right-plus" data-type="plus"
+                                                    data-field="">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @*<div class="col-xxl-2 col-lg-3 col-md-4 col-6 wow fadeInUp">
+                        <div class="product-box-4">
+                            <div class="product-image">
+                                <div class="label-flex">
+                                    <button class="btn p-0 wishlist btn-wishlist notifi-wishlist">
+                                        <i class="iconly-Heart icli"></i>
+                                    </button>
+                                </div>
+
+                                <a href="product-left-thumbnail.html">
+                                    <img src="../assets/images/veg-3/cate1/1.png" class="img-fluid" alt="">
+                                </a>
+
+                                <ul class="option">
+                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
+                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
+                                            <i class="iconly-Show icli"></i>
+                                        </a>
+                                    </li>
+                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
+                                        <a href="compare.html">
+                                            <i class="iconly-Swap icli"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="product-detail">
+                                <ul class="rating">
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star"></i>
+                                    </li>
+                                </ul>
+                                <a href="product-left-thumbnail.html">
+                                    <h5 class="name">Bell pepper</h5>
+                                </a>
+                                <h5 class="price theme-color">$70.21<del>$65.25</del></h5>
+                                <div class="price-qty">
+                                    <div class="counter-number">
+                                        <div class="counter">
+                                            <div class="qty-left-minus" data-type="minus" data-field="">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </div>
+                                            <input class="form-control input-number qty-input" type="text"
+                                                   name="quantity" value="0">
+                                            <div class="qty-right-plus" data-type="plus" data-field="">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="buy-button buy-button-2 btn btn-cart">
+                                        <a asp-action="addbasket" asp-controller="home" asp-route-id="5"><i class="iconly-Buy icli text-white m-0"></i></a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

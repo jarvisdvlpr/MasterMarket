@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Компании";
+}
+
+@section Css{
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="~/manage/assets/css/datatables.css">
+
+}
+    @model CompanyViewModel
+<div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="title-header option-title">
+                        <h5>Все Производители</h5>
+                        <form class="d-inline-flex">
+                            <a asp-action="create" asp-controller="company"
+                           class="align-items-center btn btn-theme d-flex">
+                                <i data-feather="plus-square"></i>Добавить новый
+                            </a>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive category-table">
+                        <div>
+                            <table class="table all-package theme-table" id="table_id">
+                                <thead>
+                                    <tr>
+                                        <th>Фотография</th>
+                                        <th>Называние</th>
+                                        <th>Описание</th>
+                                        <th>Опции</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in @Model.CompanyList)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="table-image">
+                                                <img src="~/uploads/company/@item.ImgSrc" class="img-fluid"
+                                                 alt="">
+                                            </div>
+                                        </td>
+                                        <td>@item.Name</td>
+
+                                        <td>@item.Description</td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a asp-action="edit" asp-controller="company" asp-route-id="@item.Id">
+                                                        <i class="ri-pencil-line"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-action="delete" asp-controller="company" asp-route-id="@item.Id">
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Data table js -->
+    <script src="~/manage/assets/js/jquery.dataTables.js"></script>
+    <script src="~/manage/assets/js/custom-data-table.js"></script>
+}
